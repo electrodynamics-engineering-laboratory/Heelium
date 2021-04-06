@@ -1,0 +1,10 @@
+2021-03-26 22:47:17,891 9582 ERROR name 'camera' is not defined
+2021-03-26 22:47:17,893 9584 WARNING Information about above video error: videoname=test.h264 seconds=15
+2021-03-26 22:49:48,176 9621 ERROR output resolution 2592x1944 exceeds macroblock limit (8192) for the selected H.264 profile and level
+2021-03-26 22:49:48,178 9623 WARNING Information about above video error: videoname=test.h264 seconds=15
+2021-03-26 22:51:43,820 9817 ERROR output resolution 2592x1944 exceeds macroblock limit (8192) for the selected H.264 profile and level
+2021-03-26 22:51:43,822 9819 WARNING Information about above video error: videoname=test.h264 seconds=15
+2021-03-26 23:00:06,092 10394 ERROR Unsupported format mp4
+2021-03-26 23:00:06,094 10395 WARNING Information about above video error: videoname=test.mp4 seconds=15
+2021-03-26 23:01:23,073 10217 ERROR Unsupported format mp4
+2021-03-26 23:01:23,075 10219 WARNING Information about above video error: videoname=test.mp4 seconds=15
