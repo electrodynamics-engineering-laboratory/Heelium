@@ -22,10 +22,10 @@ if __name__ == "__main__":
 	try:
 		# initialize serial port on serial0
 		serialPort = serial.Serial('/dev/ttyAMA0', 115200, timeout=10) # serialPort read timeout for 10 seconds
-		serialPort.open()
+		# serialPort.open()
 		# opens data file for saving samples
 		dataFile = open("data/antenna-data", 'a')
-		dataFile.write("STARTING COLLECTION AT: {}".format(datetime.now()))
+		dataFile.write("STARTING COLLECTION AT: {}\n".format(datetime.now()))
 		logger.info("STARTING COLLECTION AT: {}".format(datetime.now()))
 	except Exception as e:
 		serialPort.close()
@@ -50,15 +50,21 @@ if __name__ == "__main__":
 		startSample.off()
 		logger.info("Sample {} Commanded at: {}".format(i, datetime.now()))
 		# if samples ready, activate receive gpio
-		while(checkReady.is_active == False):
+		giveUp = 0 # gives up on sampling if timeout after 10 seconds
+		while( (checkReady.is_active == False) and (giveUp < 10000) ):
 			time.sleep(0.001)
-		
-		# command data output (half second delay in pico to send data)
-		sendData.on()
-		# read in 2 x 15k 8-bit values and  write to data file
-		data = serialPort.read(size=30000)
-		dataFile.write("DATA {}: {}\n".format(datetime.now(), data))
-		sendData.off()
-		logger.info("Data collection {} commanded and completed at: {}".format(i, datetime.now()))
+			giveUp += 1
+
+		if (giveUp < 10000):
+			# command data output (half second delay in pico to send data)
+			sendData.on()
+			# read in 2 x 15k 8-bit values and  write to data file
+			data = serialPort.read(size=30000)
+			dataFile.write("DATA {}: {}\n".format(datetime.now(), data))
+			sendData.off()
+			logger.info("Data collection {} commanded and completed at: {}".format(i, datetime.now()))
+		else:
+			# print("Gave up")
+			logger.warning("Gave up on capturing sample for collection {}".format(i))
 		# check current time
 		currentTime = time.time()
