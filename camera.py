@@ -4,6 +4,7 @@ import serial
 import shutil
 import os
 import logging
+import sys
 
 class CameraControl:
 	def __init__(self, log_dir):

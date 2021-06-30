@@ -1,0 +1,9 @@
+This file descriptions the wiring between the Pi and the Pico for the antenna code
+
+Pi 		    Pico
+------------------------------------
+PIN 33 (GPIO 13) -> PIN 6  (GPIO 4)
+PIN 35 (GPIO 19) -> PIN 7  (GPIO 5)
+PIN 37 (GPIO 26) -> PIN 10 (GPIO 7)
+PIN 8 (UART0 TX) -> PIN 9 (UART1 RX)
+PIN 10 (UART0 RX)-> PIN 8 (UART1 TX)
